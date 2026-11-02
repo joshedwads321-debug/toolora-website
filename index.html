@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Toolora offers free, simple online calculators and productivity tools for everyday work and business.">
+  <title>Toolora – Free Online Tools</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f9fc;
+      color: #172033;
+    }
+    header {
+      background: white;
+      padding: 20px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e8edf4;
+    }
+    .logo { font-size: 26px; font-weight: bold; color: #2563eb; }
+    nav a {
+      color: #475569;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+    }
+    .hero {
+      text-align: center;
+      padding: 85px 20px 65px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 54px);
+      margin: 0 0 18px;
+    }
+    .hero h1 span { color: #2563eb; }
+    .hero p {
+      color: #64748b;
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: auto;
+    }
+    .tools {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .tools h2 { text-align: center; margin-bottom: 30px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .tool {
+      background: white;
+      border: 1px solid #e5eaf2;
+      border-radius: 14px;
+      padding: 25px;
+    }
+    .tool .icon { font-size: 30px; }
+    .tool h3 { margin: 14px 0 8px; }
+    .tool p { color: #64748b; line-height: 1.5; font-size: 14px; }
+    .coming {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 6px 10px;
+      border-radius: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 35px 15px;
+      margin-top: 60px;
+      color: #64748b;
+      border-top: 1px solid #e5eaf2;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      header { padding: 18px 5%; }
+      nav a { margin-left: 10px; font-size: 12px; }
+      .hero { padding-top: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Toolora</div>
+    <nav>
+      <a href="#tools">Tools</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Simple tools. <span>Smarter work.</span></h1>
+    <p>Free online tools and calculators designed to make everyday tasks easier, faster and more productive.</p>
+  </section>
+
+  <main class="tools" id="tools">
+    <h2>Explore Our Tools</h2>
+    <div class="grid">
+      <article class="tool">
+        <div class="icon">🧮</div>
+        <h3>Percentage Calculator</h3>
+        <p>Calculate percentages quickly and easily.</p>
+        <span class="coming">Coming soon</span>
+      </article>
+      <article class="tool">
+        <div class="icon">💰</div>
+        <h3>Profit Margin Calculator</h3>
+        <p>Calculate profit, costs and profit margins.</p>
+        <span class="coming">Coming soon</span>
+      </article>
+      <article class="tool">
+        <div class="icon">🏷️</div>
+        <h3>Discount Calculator</h3>
+        <p>Find sale prices and savings instantly.</p>
+        <span class="coming">Coming soon</span>
+      </article>
+      <article class="tool">
+        <div class="icon">📝</div>
+        <h3>Word Counter</h3>
+        <p>Count words and characters in your text.</p>
+        <span class="coming">Coming soon</span>
+      </article>
+    </div>
+  </main>
+
+  <section id="about" style="text-align:center;padding:35px 20px;">
+    <h2>About Toolora</h2>
+    <p style="color:#64748b;line-height:1.6;">
+      Our goal is to make useful online tools accessible to everyone.
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Toolora. All rights reserved.
+  </footer>
+</body>
+</html>
