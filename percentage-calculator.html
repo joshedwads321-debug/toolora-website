@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Use Toolora's free percentage calculator to calculate percentages, find percentage values and work out percentage changes.">
+<title>Percentage Calculator – Toolora</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f9fc;color:#172033}
+header{background:white;padding:20px 8%;border-bottom:1px solid #e5eaf2}
+.logo{font-size:25px;font-weight:bold;color:#2563eb;text-decoration:none}
+main{max-width:680px;margin:55px auto;padding:20px}
+h1{text-align:center;font-size:34px}
+.intro{text-align:center;color:#64748b;line-height:1.6}
+.calculator{background:white;padding:28px;border:1px solid #e5eaf2;border-radius:16px;margin-top:30px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:25px}
+.tabs button{flex:1;padding:12px 8px;border:1px solid #dbe2ed;background:white;border-radius:8px;cursor:pointer}
+.tabs button.active{background:#2563eb;color:white;border-color:#2563eb}
+label{display:block;font-weight:bold;margin:17px 0 8px}
+input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:8px;font-size:17px}
+.result{background:#eff6ff;padding:20px;border-radius:10px;margin-top:24px;text-align:center}
+.result p{margin:0;color:#475569}
+#answer{font-size:30px;font-weight:bold;color:#2563eb;margin:10px 0 0}
+.note{color:#64748b;font-size:13px;line-height:1.6;margin-top:20px}
+footer{text-align:center;padding:30px;color:#64748b;font-size:13px}
+</style>
+</head>
+<body>
+<header><a class="logo" href="index.html">Toolora</a></header>
+<main>
+<h1>Percentage Calculator</h1>
+<p class="intro">Calculate percentages, find percentage values and work out percentage increases or decreases for free.</p>
+<section class="calculator">
+<div class="tabs">
+<button class="active" data-mode="of">Percentage of</button>
+<button data-mode="what">What percentage?</button>
+<button data-mode="change">Percentage change</button>
+</div>
+<div id="fields"></div>
+<div class="result">
+<p>Your result</p>
+<div id="answer" aria-live="polite">0</div>
+</div>
+<p class="note">Enter your numbers above. The result updates automatically. This calculator works entirely in your browser.</p>
+</section>
+</main>
+<footer>© 2026 Toolora. All rights reserved.</footer>
+<script>
+const fields=document.getElementById("fields");
+const answer=document.getElementById("answer");
+const buttons=document.querySelectorAll(".tabs button");
+let mode="of";
+function field(id,label){
+return `<label for="${id}">${label}</label><input type="number" id="${id}" step="any" placeholder="Enter a number">`;
+}
+function setup(){
+if(mode==="of"){
+fields.innerHTML=field("a","Percentage (%)")+field("b","Number");
+}else if(mode==="what"){
+fields.innerHTML=field("a","Part")+field("b","Whole");
+}else{
+fields.innerHTML=field("a","Original value")+field("b","New value");
+}
+fields.querySelectorAll("input").forEach(input=>input.addEventListener("input",calculate));
+calculate();
+}
+function calculate(){
+const a=Number(document.getElementById("a").value);
+const b=Number(document.getElementById("b").value);
+const av=document.getElementById("a").value;
+const bv=document.getElementById("b").value;
+if(av.trim()===""||bv.trim()===""){
+answer.textContent="Enter both numbers";
+return;
+}
+let result;
+if(mode==="of") result=a*b/100;
+if(mode==="what"){
+if(b===0){answer.textContent="Cannot divide by zero";return;}
+result=a/b*100;
+}
+if(mode==="change"){
+if(a===0){answer.textContent="Original value cannot be zero";return;}
+result=(b-a)/Math.abs(a)*100;
+}
+answer.textContent=result.toLocaleString(undefined,{maximumFractionDigits:6})+(mode==="of"?"":"%");
+}
+buttons.forEach(button=>{
+button.addEventListener("click",()=>{
+mode=button.dataset.mode;
+buttons.forEach(item=>item.classList.toggle("active",item===button));
+setup();
+});
+});
+setup();
+</script>
+</body>
+</html>
