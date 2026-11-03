@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Free online word counter. Count words, characters, sentences and paragraphs instantly with Toolora.">
+<title>Word Counter – Toolora</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f9fc;color:#172033}
+header{background:white;padding:20px 8%;border-bottom:1px solid #e5eaf2}
+.logo{font-size:25px;font-weight:bold;color:#2563eb;text-decoration:none}
+main{max-width:760px;margin:50px auto;padding:20px}
+h1{text-align:center}
+.intro{text-align:center;color:#64748b;line-height:1.6}
+.card{background:white;padding:25px;border:1px solid #e5eaf2;border-radius:16px;margin-top:28px}
+textarea{width:100%;min-height:220px;padding:16px;border:1px solid #cbd5e1;border-radius:10px;font:16px Arial;resize:vertical;line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-top:22px}
+.stat{background:#eff6ff;padding:17px;border-radius:10px;text-align:center}
+.number{font-size:27px;font-weight:bold;color:#2563eb}
+.label{font-size:13px;color:#64748b;margin-top:5px}
+.actions{display:flex;justify-content:flex-end;margin-top:12px}
+button{background:#2563eb;color:white;border:0;border-radius:8px;padding:10px 17px;cursor:pointer}
+footer{text-align:center;padding:30px;color:#64748b;font-size:13px}
+</style>
+</head>
+<body>
+<header><a class="logo" href="index.html">Toolora</a></header>
+<main>
+<h1>Word Counter</h1>
+<p class="intro">Count words, characters, sentences and paragraphs in your text instantly.</p>
+<section class="card">
+<textarea id="text" placeholder="Type or paste your text here..." aria-label="Text to count"></textarea>
+<div class="actions"><button id="clear" type="button">Clear text</button></div>
+<div class="stats" aria-live="polite">
+<div class="stat"><div class="number" id="words">0</div><div class="label">Words</div></div>
+<div class="stat"><div class="number" id="characters">0</div><div class="label">Characters</div></div>
+<div class="stat"><div class="number" id="noSpaces">0</div><div class="label">Without spaces</div></div>
+<div class="stat"><div class="number" id="sentences">0</div><div class="label">Sentences</div></div>
+<div class="stat"><div class="number" id="paragraphs">0</div><div class="label">Paragraphs</div></div>
+</div>
+</section>
+</main>
+<footer>© 2026 Toolora. All rights reserved.</footer>
+<script>
+const input=document.getElementById("text");
+function count(){
+const text=input.value;
+const trimmed=text.trim();
+document.getElementById("words").textContent=trimmed?trimmed.split(/\s+/u).length:0;
+document.getElementById("characters").textContent=text.length;
+document.getElementById("noSpaces").textContent=[...text].filter(c=>!/\s/u.test(c)).length;
+document.getElementById("sentences").textContent=trimmed?(trimmed.match(/[.!?]+(?=\s|$)/gu)||[]).length:0;
+document.getElementById("paragraphs").textContent=trimmed?text.split(/\n\s*\n/u).filter(p=>p.trim()).length:0;
+}
+input.addEventListener("input",count);
+document.getElementById("clear").addEventListener("click",()=>{
+input.value="";
+count();
+input.focus();
+});
+count();
+</script>
+</body>
+</html>
