@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Calculate discounts, savings and final sale prices instantly with Toolora's free discount calculator.">
+<title>Discount Calculator – Toolora</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f9fc;color:#172033}
+header{background:white;padding:20px 8%;border-bottom:1px solid #e5eaf2}
+.logo{font-size:25px;font-weight:bold;color:#2563eb;text-decoration:none}
+main{max-width:650px;margin:55px auto;padding:20px}
+h1{text-align:center}
+.intro{text-align:center;color:#64748b;line-height:1.6}
+.card{background:white;padding:28px;border:1px solid #e5eaf2;border-radius:16px;margin-top:30px}
+label{display:block;font-weight:bold;margin:18px 0 8px}
+input{width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:8px;font-size:17px}
+.results{background:#eff6ff;padding:20px;border-radius:10px;margin-top:24px}
+.result{display:flex;justify-content:space-between;margin:14px 0}
+.value{font-weight:bold;color:#2563eb}
+.final{font-size:30px;color:#16a34a;font-weight:bold;margin-top:10px}
+footer{text-align:center;padding:30px;color:#64748b;font-size:13px}
+</style>
+</head>
+<body>
+<header><a class="logo" href="index.html">Toolora</a></header>
+<main>
+<h1>Discount Calculator</h1>
+<p class="intro">Calculate your discount, savings and final sale price instantly.</p>
+<section class="card">
+<label for="price">Original price</label>
+<input id="price" type="number" min="0" step="any" placeholder="Enter original price">
+<label for="discount">Discount percentage (%)</label>
+<input id="discount" type="number" min="0" max="100" step="any" placeholder="Enter discount">
+<div class="results" aria-live="polite">
+<div class="result"><span>Original price</span><span class="value" id="original">—</span></div>
+<div class="result"><span>Discount amount</span><span class="value" id="saving">—</span></div>
+<div class="result"><span>Final price</span><span class="value" id="final">—</span></div>
+</div>
+</section>
+</main>
+<footer>© 2026 Toolora. All rights reserved.</footer>
+<script>
+const price=document.getElementById("price");
+const discount=document.getElementById("discount");
+function calculate(){
+const p=Number(price.value);
+const d=Number(discount.value);
+const original=document.getElementById("original");
+const saving=document.getElementById("saving");
+const final=document.getElementById("final");
+if(price.value.trim()===""||discount.value.trim()===""){
+original.textContent=saving.textContent=final.textContent="Enter both values";
+return;
+}
+if(!Number.isFinite(p)||!Number.isFinite(d)||p<0||d<0||d>100){
+original.textContent=saving.textContent=final.textContent="Use a price ≥ 0 and discount from 0 to 100";
+return;
+}
+const amount=p*d/100;
+original.textContent=p.toFixed(2);
+saving.textContent=amount.toFixed(2);
+final.textContent=(p-amount).toFixed(2);
+}
+price.addEventListener("input",calculate);
+discount.addEventListener("input",calculate);
+</script>
+</body>
+</html>
